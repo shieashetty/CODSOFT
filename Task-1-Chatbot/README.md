@@ -1,20 +1,24 @@
-# Task 1: Rule-Based Chatbot
+# Task 1: Rule-Based Mental Wellness Support Chatbot
 
 ## Objective
-To build a simple chatbot that responds to user inputs using predefined rules and if-else logic.
+To build a simple rule-based chatbot that provides general emotional support using predefined rules.
 
 ## Description
-This project is a rule-based chatbot developed using Python.  
-It identifies user queries using simple pattern matching and provides appropriate responses.
+This project is a Python-based mental wellness support chatbot that responds to user emotions such as stress, sadness, tiredness, or happiness using if-else logic and keyword matching.
+
+⚠️ This chatbot does not provide medical advice or diagnosis. It is designed only for general emotional support.
 
 ## Technologies Used
 - Python
 
 ## Features
-- Greeting responses
-- AI-related information
-- Internship-related responses
-- Exit command handling
+- Friendly greeting and conversation flow
+- Supportive responses for stress, anxiety, sadness, and fatigue
+- Encouraging and empathetic tone
+- Exit handling
 
 ## Learning Outcome
-This task helped in understanding basic natural language processing concepts and conversation flow.
+This task helped me understand:
+- Rule-based conversation design
+- Basic natural language processing concepts
+- Ethical considerations in AI-based support systems
