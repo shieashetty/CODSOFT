@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mental Wellness Support Bot</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="chatbox">
+        <h2>🌱 Mental Wellness Support Bot</h2>
+
+        <div id="chat"></div>
+
+        <input id="userInput" placeholder="Type how you feel..." />
+        <button onclick="sendMessage()">Send</button>
+    </div>
+
+    <script>
+        function sendMessage() {
+            const input = document.getElementById("userInput");
+            const message = input.value;
+
+            fetch("/chat", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ message: message })
+            })
+            .then(res => res.json())
+            .then(data => {
+                const chat = document.getElementById("chat");
+                chat.innerHTML += `<p><b>You:</b> ${message}</p>`;
+                chat.innerHTML += `<p><b>Bot:</b> ${data.reply}</p>`;
+                input.value = "";
+            });
+        }
+    </script>
+</body>
+</html>
