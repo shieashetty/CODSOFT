@@ -3,35 +3,53 @@
 <head>
     <title>Mental Wellness Support Bot</title>
     <link rel="stylesheet" href="/static/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+
 </head>
 <body>
     <div class="chatbox">
-        <h2>🌱 Mental Wellness Support Bot</h2>
+        <div class="header">
+    Mental Health Wellness Bot
+    </div>
+
 
         <div id="chat"></div>
 
-        <input id="userInput" placeholder="Type how you feel..." />
-        <button onclick="sendMessage()">Send</button>
+        <form id="chatForm">
+            <input id="userInput" placeholder="Type how you feel..." autocomplete="off" />
+            <button type="submit">Send</button>
+        </form>
     </div>
 
     <script>
-        function sendMessage() {
-            const input = document.getElementById("userInput");
-            const message = input.value;
+        const form = document.getElementById("chatForm");
+        const input = document.getElementById("userInput");
+        const chat = document.getElementById("chat");
+
+        form.addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            const message = input.value.trim();
+            if (message === "") return;
 
             fetch("/chat", {
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
+                headers: {
+                    "Content-Type": "application/json"
+                },
                 body: JSON.stringify({ message: message })
             })
-            .then(res => res.json())
+            .then(response => response.json())
             .then(data => {
-                const chat = document.getElementById("chat");
-                chat.innerHTML += `<p><b>You:</b> ${message}</p>`;
-                chat.innerHTML += `<p><b>Bot:</b> ${data.reply}</p>`;
+                chat.innerHTML += `<div class="message user">${message}</div>`;
+                chat.innerHTML += `<div class="message bot">${data.reply}</div>`;
+                chat.scrollTop = chat.scrollHeight;
                 input.value = "";
+            })
+            .catch(error => {
+                console.error("Error:", error);
             });
-        }
+        });
     </script>
 </body>
 </html>
